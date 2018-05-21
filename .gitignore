@@ -1,0 +1,38 @@
+.DS_Store
+node_modules/
+/dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+/test/unit/coverage/
+/test/e2e/reports/
+selenium-debug.log
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Apple #
+.DS_Store
+
+# Intellij #
+.idea
+*.iml
+*.log
+
+dist/
+node/
+node_modules/
+npm-debug.log
+target
+test-output
+test/e2e/reports
+test/unit/coverage
+yarn-error.log
+yarn.lock
+target/
+debug.log
