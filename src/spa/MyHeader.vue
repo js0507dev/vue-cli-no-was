@@ -1,4 +1,5 @@
 <template>
+
   <nav class="navbar navbar-default">
     <div class="containerfluid">
       <div class="navbar-header">
@@ -22,34 +23,35 @@
 
 <script>
   export default {
-    data: function() {
-      return {
-        access_token: '',
+    mounted: function() {
+      let token = this.getAccessToken();
+      if(token != '') {
+        //개인정보 요청
       }
     },
-    mounted: function() {
-      this.getAccessToken();
+    computed: {
+      accessToken () {
+        return this.$store.getters.accessToken;
+      }
     },
     methods: {
       getAccessToken: function () {
-        console.log("tttt")
-        return this.$event_bus.$emit('readAccessToken', (data) => {
-          this.access_token = data;
-          console.log("in a callback!!!");
-          console.log("token :: " + data);
-        });
+        this.$store.dispatch('readAccessToken', 'jsmaster');
+        return this.accessToken;
       },
       login: function () {
-        this.getAccessToken();
-        if(this.access_token == '') {
-          this.$event_bus.$emit('issuedAccessToken', {
-            responseType: 'token',
+        let token = this.getAccessToken();
+        console.log("test == " + token + ", computed == " + (token == ''))
+        alert("test");
+        if(token == '' || token == undefined) {
+          this.$store.dispatch('issueAccessToken',{
+            responseType: 'implicit',
             clientId: 'cli',
             redirectUri: 'http://localhost:8081/auth/callback',
-            scope: 'read'
+            scope: 'member.info.public'
           });
         }
-      }
+      },
     }
   }
 </script>

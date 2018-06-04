@@ -10,7 +10,6 @@ import './assets/vendor/bootstrap-social/bootstrap-social.css'
 
 Vue.config.productionTip = false;
 Vue.prototype.$http = axios;
-Vue.prototype.$event_bus= new Vue();
 
 /* eslint-disable no-new */
 new Vue({

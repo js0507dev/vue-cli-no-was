@@ -5,19 +5,19 @@
 <script>
 export default {
   mounted: function() {
-    console.log("AUthCallback!!")
     let accessToken = this.getAccessToken();
     let tokenType = this.getAccessTokenType();
     let expire = this.getAccessTokenExpire();
     let tokenValue = tokenType + ' ' + accessToken;
-    this.$event_bus.$emit('writeCookie', 'access_token', tokenValue, expire);
-
-    window.location.href = "/";
+    this.$store.dispatch('writeCookie', {
+      name: 'access_token',
+      value: tokenValue,
+      expire: expire
+    });
   },
   methods: {
     getParameterByName: function (name) {
       let match = RegExp('[#&]' + name + '=([^&]*)').exec(window.location.hash);
-      console.log("test[" + name + "] = " + (match && decodeURIComponent(match[1].replace(/\+/g, ' '))));
       return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
     },
     getAccessToken: function () {

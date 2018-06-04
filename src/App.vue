@@ -9,8 +9,10 @@
 <script>
 import MyHeader from './spa/MyHeader.vue'
 import Token from './shared-component/Token.vue'
+import store from './vuex/store'
 
 export default {
+  store,
   name: 'App',
   components: {
     MyHeader,
